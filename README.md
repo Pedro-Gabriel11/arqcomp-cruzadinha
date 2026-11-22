@@ -4,7 +4,7 @@ Um RPG de turnos em que a sua arma é uma **cruzadinha de Arquitetura Computacio
 
 O Guardião Corrompido tomou conta da masmorra escondida dentro do computador. Para derrotá-lo, você usa os feitiços do **Grimório Arcano**: cada palavra que você decifrar no tabuleiro vira um ataque contra os monstros.
 
-🔗 **Jogue aqui:** https://Pedro-Gabriel11.github.io/Jogo-de-Arq-Comp/
+🔗 **Jogue aqui:** https://Pedro-Gabriel11.github.io/arqcomp-cruzadinha/
 
 ## Como jogar
 
