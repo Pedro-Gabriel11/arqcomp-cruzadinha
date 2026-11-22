@@ -12,39 +12,76 @@
         <h1>⚔️ A Masmorra da Placa-Mãe ⚔️</h1>
         <p class="historia">
             O Guardião Corrompido tomou conta da masmorra escondida dentro do computador.
-            Só quem conhece os segredos da arquitetura computacional pode derrotá-lo.
-            Decifre as pistas, preencha o tabuleiro e enfrente o Guardião!
+            Suas armas são os feitiços do <b>Grimório Arcano</b>: cada palavra que você decifrar
+            vira um ataque. Mas cuidado: a cada turno, os monstros contra-atacam!
         </p>
     </header>
 
+    <!-- ===== ARENA DE BATALHA ===== -->
+    <section id="arena">
+        <div class="lutador">
+            <div class="avatar" id="avatar_heroi">🧙</div>
+            <p class="nome">Aventureiro</p>
+            <div class="barra"><div class="vida heroi" id="barra_heroi"></div></div>
+            <p id="txt_vida_heroi"></p>
+        </div>
+
+        <div class="centro">
+            <p id="txt_sala"></p>
+            <div id="div_log"></div>
+        </div>
+
+        <div class="lutador">
+            <div class="avatar" id="avatar_inimigo"></div>
+            <p class="nome" id="txt_nome_inimigo"></p>
+            <div class="barra"><div class="vida inimigo" id="barra_inimigo"></div></div>
+            <p id="txt_vida_inimigo"></p>
+        </div>
+    </section>
+
+    <!-- ===== AÇÕES DO TURNO ===== -->
+    <section id="acoes">
+        <button id="btn_conferir" onclick="conferir()">⚔️ Conferir (atacar)</button>
+        <!-- >>> extra -->
+        <button id="btn_pocao" onclick="usarPocao()"></button>
+        <button id="btn_pergaminho" onclick="usarPergaminho()"></button>
+        <!-- <<< extra -->
+        <button id="btn_reiniciar" onclick="reiniciar()">🔄 Reiniciar</button>
+    </section>
+    <p id="txt_contador"></p>
+
+    <!-- ===== GRIMÓRIO (CRUZADINHA) ===== -->
     <main>
-        <!-- O tabuleiro começa vazio: o script.js cria as casas aqui dentro -->
-        <section id="tabuleiro"></section>
+        <section>
+            <h2 class="titulo-grimorio">📖 Grimório Arcano</h2>
+            <!-- O tabuleiro começa vazio: o script.js cria as casas aqui dentro -->
+            <div id="tabuleiro"></div>
+        </section>
 
         <section class="pistas">
             <div>
                 <h2>Horizontais</h2>
                 <ol>
-                    <li value="1">Circuito integrado que reúne processador, memória e periféricos em um único chip.</li>
-                    <li value="6">Memória não volátil, apagável eletricamente byte a byte, usada para guardar configurações.</li>
-                    <li value="7">Processador que possui quatro núcleos de processamento.</li>
-                    <li value="10">Memória não volátil utilizada em pendrives e cartões de memória.</li>
-                    <li value="11">Recurso que permite aos periféricos transferirem informações sem ocupar o processador.</li>
-                    <li value="12">Vias de mão dupla que levam o conteúdo lido ou gravado na memória.</li>
-                    <li value="13">Memória gravada de fábrica, como a que guarda o firmware de inicialização do computador.</li>
-                    <li value="14">Memória rápida que guarda dados frequentemente utilizados para acelerar o processamento.</li>
+                    <li value="1" id="pista_H1">Circuito integrado que reúne processador, memória e periféricos em um único chip.</li>
+                    <li value="6" id="pista_H6">Memória não volátil, apagável eletricamente byte a byte, usada para guardar configurações.</li>
+                    <li value="7" id="pista_H7">Processador que possui quatro núcleos de processamento.</li>
+                    <li value="10" id="pista_H10">Memória não volátil utilizada em pendrives e cartões de memória.</li>
+                    <li value="11" id="pista_H11">Recurso que permite aos periféricos transferirem informações sem ocupar o processador.</li>
+                    <li value="12" id="pista_H12">Vias de mão dupla que levam o conteúdo lido ou gravado na memória.</li>
+                    <li value="13" id="pista_H13">Memória gravada de fábrica, como a que guarda o firmware de inicialização do computador.</li>
+                    <li value="14" id="pista_H14">Memória rápida que guarda dados frequentemente utilizados para acelerar o processamento.</li>
                 </ol>
             </div>
             <div>
                 <h2>Verticais</h2>
                 <ol>
-                    <li value="1">Onde arquivos e programas ficam guardados mesmo com o computador desligado, como HD e SSD.</li>
-                    <li value="2">O cérebro do computador: busca, decodifica e executa as instruções dos programas.</li>
-                    <li value="3">Memória temporária que armazena dados e programas em uso pelo computador.</li>
-                    <li value="4">Vias de mão única por onde o processador indica qual posição deseja acessar.</li>
-                    <li value="5">Pequenas unidades de armazenamento de altíssima velocidade localizadas dentro do processador.</li>
-                    <li value="8">Circuito dentro do processador que soma, subtrai e compara valores.</li>
-                    <li value="9">Processador que possui dois núcleos de processamento.</li>
+                    <li value="1" id="pista_V1">Onde arquivos e programas ficam guardados mesmo com o computador desligado, como HD e SSD.</li>
+                    <li value="2" id="pista_V2">O cérebro do computador: busca, decodifica e executa as instruções dos programas.</li>
+                    <li value="3" id="pista_V3">Memória temporária que armazena dados e programas em uso pelo computador.</li>
+                    <li value="4" id="pista_V4">Vias de mão única por onde o processador indica qual posição deseja acessar.</li>
+                    <li value="5" id="pista_V5">Pequenas unidades de armazenamento de altíssima velocidade localizadas dentro do processador.</li>
+                    <li value="8" id="pista_V8">Circuito dentro do processador que soma, subtrai e compara valores.</li>
+                    <li value="9" id="pista_V9">Processador que possui dois núcleos de processamento.</li>
                 </ol>
             </div>
         </section>

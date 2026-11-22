@@ -8,7 +8,7 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 h1 {
@@ -21,6 +21,129 @@ h1 {
     line-height: 1.5;
 }
 
+/* ===== ARENA DE BATALHA ===== */
+#arena {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a231d;
+    border: 3px solid #6b4f2a;
+    border-radius: 12px;
+}
+
+.lutador {
+    width: 200px;
+    text-align: center;
+}
+
+.avatar {
+    font-size: 64px;
+}
+
+.nome {
+    margin: 4px 0;
+    font-weight: bold;
+    color: #f0a830;
+}
+
+.barra {
+    height: 16px;
+    background-color: #111;
+    border: 2px solid #6b4f2a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vida {
+    height: 100%;
+    transition: width 0.4s;      /* a barra diminui devagar, como em RPG */
+}
+
+.vida.heroi {
+    background-color: #4caf50;
+}
+
+.vida.inimigo {
+    background-color: #c0392b;
+}
+
+.centro {
+    flex: 1;
+    text-align: center;
+}
+
+#txt_sala {
+    font-size: 18px;
+    color: #f0a830;
+    margin-top: 0;
+}
+
+#div_log {
+    height: 120px;
+    overflow-y: auto;            /* barra de rolagem quando tiver muitas mensagens */
+    padding: 8px;
+    background-color: #1b1714;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+#div_log p {
+    margin: 4px 0;
+}
+
+/* Animação de "tremer" quando alguém leva dano */
+.tremendo {
+    animation: tremer 0.5s;
+}
+
+@keyframes tremer {
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-10px); }
+    75%      { transform: translateX(10px); }
+}
+
+/* ===== BOTÕES ===== */
+#acoes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+button {
+    padding: 10px 18px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: #1b1714;
+    background-color: #f0a830;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffc45c;
+}
+
+button:disabled {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+}
+
+#txt_contador {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ===== GRIMÓRIO (TABULEIRO) ===== */
 main {
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +151,11 @@ main {
     justify-content: center;
 }
 
-/* ===== TABULEIRO ===== */
+.titulo-grimorio {
+    color: #f0a830;
+    text-align: center;
+}
+
 #tabuleiro {
     display: grid;
     grid-template-columns: repeat(16, 34px);   /* 16 colunas de 34px */
@@ -36,7 +163,7 @@ main {
 }
 
 .casa {
-    position: relative;          /* deixa o número ficar "preso" no canto da casa */
+    position: relative;          /* deixa o número "preso" no canto da casa */
     width: 34px;
     height: 34px;
     background-color: #e8dcc0;
@@ -55,8 +182,23 @@ main {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+    font-family: Georgia, serif;
     text-transform: uppercase;   /* mostra a letra em maiúscula */
     color: #1b1714;
+}
+
+/* Cores das casas depois de clicar em Conferir */
+.casa input.certa {
+    background-color: #7bc47f;
+    color: #1b1714;
+}
+
+.casa input.errada {
+    background-color: #e07b6f;
+}
+
+.casa input.revelada {
+    color: #7b3fa0;              /* letra revelada pelo pergaminho fica roxa */
 }
 
 .numero {
@@ -65,6 +207,7 @@ main {
     left: 2px;
     font-size: 9px;
     color: #6b4f2a;
+    pointer-events: none;        /* o clique "atravessa" o número e cai no input */
 }
 
 /* ===== PISTAS ===== */
@@ -82,4 +225,14 @@ main {
 .pistas li {
     margin-bottom: 8px;
     font-size: 14px;
+}
+
+/* Pistas certas ficam verdes e riscadas; erradas ficam vermelhas */
+.pistas li.certa {
+    color: #7bc47f;
+    text-decoration: line-through;
+}
+
+.pistas li.errada {
+    color: #e07b6f;
 }
